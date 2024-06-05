@@ -55,7 +55,14 @@ button{
     width: 80%;
     height: 80%;
     background-color: #2d1d59;
-    background-image: url("https://cdn.iconfinder.com/data/family/previews/preview/minarti.png?indexed=1702900638");
+    background-image: url("https://cdn.iconfinder.com/data/family/previews/preview/essential-10.png?indexed=1702900638");
     left:7% ;
     top: 7% ;
+}
+#status{
+    position: absolute;
+    text-align: center;
+    right: 0;
+    left: 0;
+    bottom: 0;
 }
