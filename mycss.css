@@ -1,0 +1,61 @@
+body{
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+header{
+    background-color: #2b2b52;
+    color: white;
+    padding: 10px 0;
+}
+nav{
+    padding: 10px 0;
+    border: 2px solid rebeccapurple;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+main{
+    background-color: #4f4f88;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+}
+.image-container {
+    text-align: center;
+}
+.image-container img {
+    max-width: 50%;
+    height: auto;
+}
+footer{
+    border: 2px solid #603b86;
+    color: white;
+    background-color: darkslateblue;
+    padding: 10px 0;
+}
+p#book,#statusInfo {
+    font-size: 1.2em;
+    letter-spacing: 0.2em;
+    margin: 0;
+}
+button{
+    font-size: 1.5em;
+    border: none;
+    border-radius: 20px;
+    color: #e7e2e2;
+    background-color: #5f5fbb;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #3f3f70;
+}
+
+button:active {
+    background-color: #066cdc;
+}

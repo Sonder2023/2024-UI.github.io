@@ -1,0 +1,123 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1,user-scalable=no">
+    <!--
+     增加这句后，可以看到浏览器的DevTools面板的模拟移动设备状态的变化
+    -->
+    <style>
+        body{
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header{
+            background-color: #2b2b52;
+            color: white;
+            padding: 10px 0;
+        }
+        nav{
+            padding: 10px 0;
+            border: 2px solid rebeccapurple;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        main{
+            background-color: #4f4f88;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 0;
+        }
+        .image-container {
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 50%;
+            height: auto;
+        }
+        footer{
+            border: 2px solid #603b86;
+            color: white;
+            background-color: darkslateblue;
+            padding: 10px 0;
+        }
+        p#book,#statusInfo {
+            font-size: 1.2em;
+            letter-spacing: 0.2em;
+            margin: 0;
+        }
+        button{
+            font-size: 1.5em;
+            border: none;
+            border-radius: 20px;
+            color: #e7e2e2;
+            background-color: #5f5fbb;
+            padding: 5px 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #3f3f70;
+        }
+
+        button:active {
+            background-color: #066cdc;
+        }
+    </style>
+    <title> 移动互联时代的响应式设计（窄屏） </title>
+</head>
+<body>
+<header>
+    <p id="book" style="font-size: 1em;">
+        Anime
+        display@Sonder2023
+    </p>
+</header>
+<nav style="font-size: 0.65em">
+    <button id="nav1" onclick="scrollToImage(0)">
+        导航1
+    </button>
+    <button id="nav2" onclick="scrollToImage(1)">
+        导航2
+    </button>
+    <button id="nav3" onclick="scrollToImage(2)">
+        导航3
+    </button>
+</nav>
+<main id = 'main'>
+    <div class="image-container" style="margin: 10px">
+        <img src="https://admin.itsnicethat.com/images/n9YNathHWzGwuzNKbEKV5LY7_pg=/219612/format-webp%7Cwidth-1440/Monga-Design-Atlas-Sessions-Copyright--Monga-Design-2021.jpg" alt="Image 3">
+        <p>拉罗©蒙加设计</p>
+    </div>
+    <div class="image-container" style="margin: 10px">
+        <img src="https://admin.itsnicethat.com/images/mlNk7uxreQVQkKo4vJ_WtZ-lTWQ=/219608/format-webp%7Cwidth-1440/Monga_Design_Pray_Coffe_Bar_Copyright__Monga_Design_2021_1.jpg" alt="Image 2">
+        <p>拉罗©蒙加设计</p>
+    </div>
+</main>
+<footer>
+    <p id="statusInfo" style="font-size: 0.8em">
+        CopyRight from 梁港莎 江西科技师范大学 2022--2025
+    </p>
+</footer>
+<script>
+    var UI = {};
+    UI.appWidth = window.innerWidth > 600 ? 600 : window.innerWidth ;
+    UI.appHeight = window.innerHeight;
+    const LETTERS = 22 ;
+    const baseFont = UI.appWidth / LETTERS;
+
+    //通过更改body对象的字体大小，这个属性能够遗传其子子孙孙
+    document.body.style.fontSize = baseFont + "px";
+    //通过把body对象的宽度和高度设置为设备/屏幕的宽度和高度，实现全屏。
+    //通过CSS对子对象百分比（纵向）的配合，从而实现响应式设计的目标。
+    document.body.style.width = UI.appWidth - 2*baseFont + "px" ;
+    document.body.style.height = UI.appHeight - 4*baseFont + "px";
+</script>
+</body>
+</html>
