@@ -1,61 +1,48 @@
-body{
+*{
+    margin: 10px;
     text-align: center;
-    margin: 0;
-    padding: 0;
 }
 header{
-    background-color: #2b2b52;
-    color: white;
-    padding: 10px 0;
+    border: 3px solid green;
+    height: 10%;
+    font-size: 1em;
+    margin-bottom: 40px;
+
 }
-nav{
-    padding: 10px 0;
-    border: 2px solid rebeccapurple;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
+
 main{
-    background-color: #4f4f88;
+    border: 3px solid green;
+    font-size: 0.8em;
+    position: relative;
+    margin-bottom: 18px;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    padding: 20px 0;
+    height: 70%;
 }
-.image-container {
-    text-align: center;
+
+footer{
+    border: 3px solid green;
+    height:10%;
+    font-size: 0.7em;
+}
+body{
+    position: relative;
+}
+#aid{
+    position: absolute;
+    border: 3px solid green;
+    top: -1.5%;
+    left:600px;
 }
 .image-container img {
-    max-width: 50%;
+    max-width: 70%;
     height: auto;
 }
-footer{
-    border: 2px solid #603b86;
-    color: white;
-    background-color: darkslateblue;
-    padding: 10px 0;
-}
-p#book,#statusInfo {
-    font-size: 1.2em;
-    letter-spacing: 0.2em;
-    margin: 0;
-}
-button{
-    font-size: 1.5em;
-    border: none;
-    border-radius: 20px;
-    color: #e7e2e2;
-    background-color: #5f5fbb;
-    padding: 5px 10px;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #3f3f70;
-}
-
-button:active {
-    background-color: #066cdc;
+#bookface{
+    width: 80%;
+    height: 80%;
+    border:1px solid #0c2a46;
+    background-color: #d1fdf5;
+    margin:auto;
 }

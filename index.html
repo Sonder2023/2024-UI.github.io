@@ -1,47 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width , initial-scale=1,user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Welcome to myCTApp</title>
     <link rel="stylesheet" href="mycss.css">
-    <link rel="stylesheet" href="myjs.js">
-    <!--
-     增加这句后，可以看到浏览器的DevTools面板的模拟移动设备状态的变化
-    -->
-    <title> 移动互联时代的响应式设计（窄屏） </title>
 </head>
 <body>
 <header>
-    <p id="book" style="font-size: 1em;">
-        Anime
-        display@Sonder2023
+    <p id="book">
+        《现代电影赏析》
     </p>
 </header>
-<nav style="font-size: 0.65em">
-    <button id="nav1" onclick="scrollToImage(0)">
-        导航1
-    </button>
-    <button id="nav2" onclick="scrollToImage(1)">
-        导航2
-    </button>
-    <button id="nav3" onclick="scrollToImage(2)">
-        导航3
-    </button>
-</nav>
-<main id = 'main'>
-    <div class="image-container" style="margin: 10px">
-        <img src="https://admin.itsnicethat.com/images/n9YNathHWzGwuzNKbEKV5LY7_pg=/219612/format-webp%7Cwidth-1440/Monga-Design-Atlas-Sessions-Copyright--Monga-Design-2021.jpg" alt="Image 3">
-        <p>拉罗©蒙加设计</p>
-    </div>
-    <div class="image-container" style="margin: 10px">
-        <img src="https://admin.itsnicethat.com/images/mlNk7uxreQVQkKo4vJ_WtZ-lTWQ=/219608/format-webp%7Cwidth-1440/Monga_Design_Pray_Coffe_Bar_Copyright__Monga_Design_2021_1.jpg" alt="Image 2">
-        <p>拉罗©蒙加设计</p>
+
+<main id="main" >
+    <div id="bookface" >
+
     </div>
 </main>
+
 <footer>
-    <p id="statusInfo" style="font-size: 0.8em">
-        CopyRight from 梁港莎 江西科技师范大学 2022--2025
-    </p>
+
+    CopyRight from 梁港莎 江西科技师范大学 2022--2025
+
 </footer>
+<div id="aid" >
+    <p>用户键盘响应区</p>
+
+    <div class="image-container" style="margin: 10px">
+        <img src="https://media.itsnicethat.com/original_images/stink-studios-loewe-howls-moving-castle-digital-itsnicethat-06.gif" alt="Image 1">
+        <p>Howl’s Moving Castle</p>
+        <div style="font-size: 25px;" contentEditable="true">
+            <h3>影片赏析:</h3>
+        </div>
+    </div>
+
+</div>
+<!-- 页面内容 -->
+
+<script src="myjs.js"></script>
 </body>
 </html>
