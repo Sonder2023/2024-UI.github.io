@@ -1,43 +1,41 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <title>Welcome to myCTApp</title>
+    <meta name="viewport" content="width=device-width , initial-scale=1 , user-scalable=no">
+
+    <title>通用的UI设计，用一套代码同时为触屏和鼠标建模</title>
     <link rel="stylesheet" href="mycss.css">
 </head>
-<body>
+<body >
 <header>
-    <p id="book">
-        《现代电影赏析》
+    <p  style="color: #0c2a46">
+        Slide Image
     </p>
 </header>
+<nav>
+    <button>向前</button>
+    <button>向后</button>
+    <button>其他</button>
+</nav>
 
-<main id="main" >
-    <div id="bookface" >
+
+<main id="main">
+    <div id="bookface">
 
     </div>
 </main>
 
 <footer>
 
-    CopyRight from 梁港莎 江西科技师范大学 2022--2025
+    CopyRight 梁港莎 江西科技师范大学 2024--2025
 
 </footer>
 <div id="aid" >
     <p>用户键盘响应区</p>
-
-    <div class="image-container" style="margin: 10px">
-        <img src="https://media.itsnicethat.com/original_images/stink-studios-loewe-howls-moving-castle-digital-itsnicethat-06.gif" alt="Image 1">
-        <p>Howl’s Moving Castle</p>
-        <div style="font-size: 25px;" contentEditable="true">
-            <h3>影片赏析:</h3>
-        </div>
-    </div>
-
+    <p id="keyboard"></p>
 </div>
-<!-- 页面内容 -->
-
 <script src="myjs.js"></script>
 </body>
 </html>

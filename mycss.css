@@ -1,48 +1,61 @@
 *{
     margin: 10px;
     text-align: center;
+    border-radius: 1em;
+
 }
 header{
-    border: 3px solid green;
+    border: 3px solid #603b86;
     height: 10%;
     font-size: 1em;
-    margin-bottom: 40px;
 
 }
-
+nav{
+    border: 3px solid #603b86;
+    height: 10%;
+    border-radius: 1em;
+}
 main{
-    border: 3px solid green;
+    border: 3px solid #603b86;
+    height: 70%;
     font-size: 0.8em;
     position: relative;
-    margin-bottom: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 70%;
+    background-color: #d2c0e3;
 }
 
+
+
 footer{
-    border: 3px solid green;
+    border: 3px solid #603b86;
     height:10%;
     font-size: 0.7em;
+    padding-top: 40px;
 }
 body{
     position: relative;
 }
+button{
+    font-size: 18px; /* 指定字体大小 */
+    width: 100px; /* 保持按钮宽度 */
+    height: 40px; /* 保持按钮高度 */
+    color: #fafafa;
+    background-color: #0c2a46;
+    border: none;
+    cursor: pointer;
+}
 #aid{
     position: absolute;
-    border: 3px solid green;
-    top: -1.5%;
+    border: 3px solid #4f4f88;
+    top:0px;
     left:600px;
-}
-.image-container img {
-    max-width: 70%;
-    height: auto;
+    color: #603b86;
 }
 #bookface{
+    position: absolute;
     width: 80%;
     height: 80%;
-    border:1px solid #0c2a46;
-    background-color: #d1fdf5;
-    margin:auto;
+    background-color: #2d1d59;
+    background-image: url("https://cdn.iconfinder.com/data/family/previews/preview/minarti.png?indexed=1702900638");
+    left:7% ;
+    top: 7% ;
 }

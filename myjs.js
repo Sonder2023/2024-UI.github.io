@@ -13,44 +13,98 @@ let baseFont = UI.appWidth /20;
 document.body.style.fontSize = baseFont +"px";
 //通过把body的高度设置为设备屏幕的高度，从而实现纵向全屏
 //通过CSS对子对象百分比（纵向）的配合，从而达到我们响应式设计的目标
-document.body.style.width = UI.appWidth  + "px";
-document.body.style.height = UI.appHeight - 62 + "px";
+document.body.style.width = UI.appWidth - baseFont + "px";
+document.body.style.height = UI.appHeight - baseFont*4 + "px";
 if(window.innerWidth<1000){
     $("aid").style.display='none';
 }
-$("aid").style.width=window.innerWidth-UI.appWidth-30+'px';
-$("aid").style.height= UI.appHeight-62+'px';
+$("aid").style.width=window.innerWidth-UI.appWidth - baseFont*3 +'px';
+$("aid").style.height= UI.appHeight - baseFont*3 +'px';
 
-//尝试对鼠标设计UI控制
-var mouse={};
-mouse.isDown= false;
-mouse.x= 0;
-mouse.deltaX=0;
-$("bookface").addEventListener("mousedown",function(ev){
-    let x= ev.pageX;
-    let y= ev.pageY;
+//尝试对鼠标和触屏设计一套代码实现UI控制
+var Pointer = {};
+Pointer.isDown= false;
+Pointer.x = 0;
+Pointer.deltaX =0;
+{ //Code Block begin
+    let handleBegin = function(ev){
+        Pointer.isDown=true;
 
-    console.log("鼠标按下了，坐标为："+"("+x+","+y+")");
-    $("bookface").textContent= "鼠标按下了，坐标为："+"("+x+","+y+")";
-});
-$("bookface").addEventListener("mousemove",function(ev){
-    let x= ev.pageX;
-    let y= ev.pageY;
+        if(ev.touches){console.log("touches1"+ev.touches);
+            Pointer.x = ev.touches[0].pageX ;
+            Pointer.y = ev.touches[0].pageY ;
+            console.log("Touch begin : "+"("+Pointer.x +"," +Pointer.y +")" ) ;
+            $("bookface").textContent= "触屏事件开始，坐标："+"("+Pointer.x+","+Pointer.y+")";
+        }else{
+            Pointer.x= ev.pageX;
+            Pointer.y= ev.pageY;
+            console.log("PointerDown at x: "+"("+Pointer.x +"," +Pointer.y +")" ) ;
+            $("bookface").textContent= "鼠标按下，坐标："+"("+Pointer.x+","+Pointer.y+")";
+        }
+    };
+    let handleEnd = function(ev){
+        Pointer.isDown=false;
+        ev.preventDefault()
+        //console.log(ev.touches)
+        if(ev.touches){
+            $("bookface").textContent= "";
+            if(Math.abs(Pointer.deltaX) > 100){
+                $("bookface").textContent += ""  ;
+            }else{
+                $("bookface").textContent += " "  ;
+                $("bookface").style.left = '7%' ;
+            }
+        }else{
 
-    console.log("鼠标正在移动，坐标为："+"("+x+","+y+")");
-    $("bookface").textContent= "鼠标正在移动，坐标为："+"("+x+","+y+")";
-});
-$("bookface").addEventListener("mouseout",function(ev){
-    $("bookface").textContent="鼠标已经移开";
-});
+            $("bookface").textContent= "";
+            if(Math.abs(Pointer.deltaX) > 100){
+                $("bookface").textContent += ""  ;
+            }else{
+                $("bookface").textContent += " "  ;
+                $("bookface").style.left = '7%' ;
+            }
+        }
+    };
+    let handleMoving = function(ev){
+        ev.preventDefault();
+        if (ev.touches){
+            if (Pointer.isDown){
+                console.log("Touch is moving");
+                Pointer.deltaX = parseInt( ev.touches[0].pageX - Pointer.x );
+                // $("bookface").textContent= "正在滑动触屏，滑动距离：" + Pointer.deltaX +"px 。";
+                $('bookface').style.left =  Pointer.deltaX + 'px' ;
+            }
+        }else{
+            if (Pointer.isDown){
+                console.log("Pointer isDown and moving");
+                Pointer.deltaX = parseInt( ev.pageX - Pointer.x );
+                // $("bookface").textContent= "正在拖动鼠标，距离：" + Pointer.deltaX +"px 。";
+                $('bookface').style.left =  Pointer.deltaX + 'px' ;
+            }
+        }
+    };
 
-document.body.addEventListener("keypress", function(ev) {
-    let k = ev.key;
-    let c = ev.keyCode;
+    $("bookface").addEventListener("mousedown",handleBegin );
+    $("bookface").addEventListener("touchstart",handleBegin );
+    $("bookface").addEventListener("mouseup", handleEnd );
+    $("bookface").addEventListener("touchend",handleEnd );
+    $("bookface").addEventListener("mouseout", handleEnd );
+    $("bookface").addEventListener("mousemove", handleMoving);
+    $("bookface").addEventListener("touchmove", handleMoving);
+    let count = 0;
+    document.body.addEventListener("keypress", function(ev){
+        if(count === 30){
+            $("keyboard").textContent += "\n";
+            count = 0;
+        } else {
+            $("keyboard").textContent += ev.key;
+            count++;
+        }
+    });
 
-    document.getElementById("aid").textContent = "您的按键：" + k + "，字符编码：" + c;
-});
 
+}
+//Code Block  end
 function $(ele){
     if (typeof ele !== 'string'){
         throw("自定义的$函数参数的数据类型错误，实参必须是字符串！");
