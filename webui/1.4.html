@@ -1,0 +1,197 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1 , user-scalable=no">
+
+    <title>UI设计之鼠标模型的分析和控制</title>
+
+    <style>
+        *{
+            margin: 10px;
+            text-align: center;
+            border-radius: 1em;
+
+        }
+        header{
+            border: 3px solid #603b86;
+            height: 10%;
+            font-size: 1em;
+
+        }
+        nav{
+            border: 3px solid #603b86;
+            height: 10%;
+            border-radius: 1em;
+        }
+        main{
+            border: 3px solid #603b86;
+            height: 70%;
+            font-size: 0.8em;
+            position: relative;
+            background-color: #d2c0e3;
+        }
+
+
+
+        footer{
+            border: 3px solid #603b86;
+            height:10%;
+            font-size: 0.7em;
+          padding-top: 40px;
+        }
+        body{
+            position: relative;
+        }
+        button{
+            font-size: 18px; /* 指定字体大小 */
+            width: 100px; /* 保持按钮宽度 */
+            height: 40px; /* 保持按钮高度 */
+            color: #fafafa;
+            background-color: #0c2a46;
+            border: none;
+            cursor: pointer;
+        }
+        #aid{
+            position: absolute;
+            border: 3px solid #4f4f88;
+            top:0px;
+            left:600px;
+        }
+        #bookface{
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            background-color: #ded2ee;
+            background-image: url("https://cdn.iconfinder.com/data/family/previews/preview/checkers.png?indexed=1702900638");
+            left:7% ;
+            top: 7% ;
+        }
+
+      </style>
+</head>
+<body >
+<header>
+    <p  style="color: #0c2a46">
+        Slide Image
+    </p>
+</header>
+<nav>
+    <button>向前</button>
+    <button>向后</button>
+    <button>其他</button>
+</nav>
+
+
+<main id="main">
+    <div id="bookface">
+
+    </div>
+</main>
+
+<footer>
+
+    CopyRight 梁港莎 江西科技师范大学 2024--2025
+
+</footer>
+<div id="aid">
+    <p>用户键盘响应区</p>
+    <p id="keyboard"></p>
+</div>
+<script>
+    var UI = {};
+    if(window.innerWidth>600){
+        UI.appWidth=600;
+    }else{
+        UI.appWidth = window.innerWidth;
+    }
+
+
+    UI.appHeight = window.innerHeight;
+
+    let baseFont = UI.appWidth /20;
+    //通过改变body对象的字体大小，这个属性可以影响其后代
+    document.body.style.fontSize = baseFont +"px";
+    //通过把body的高度设置为设备屏幕的高度，从而实现纵向全屏
+    //通过CSS对子对象百分比（纵向）的配合，从而达到我们响应式设计的目标
+    document.body.style.width = UI.appWidth - baseFont + "px";
+    document.body.style.height = UI.appHeight - baseFont*4 + "px";
+    if(window.innerWidth<1000){
+        $("aid").style.display='none';
+    }
+    $("aid").style.width=window.innerWidth-UI.appWidth - baseFont*3 +'px';
+    $("aid").style.height= UI.appHeight - baseFont*3 +'px';
+
+    //尝试对鼠标设计UI控制
+    var mouse={};
+    mouse.isDown= false;
+    mouse.x= 0;
+    mouse.y= 0;
+    mouse.deltaX=0;
+    $("bookface").addEventListener("mousedown",function(ev){
+        mouse.isDown=true;
+        mouse.x= ev.pageX;
+        mouse.y= ev.pageY;
+        console.log("mouseDown at x: "+"("+mouse.x +"," +mouse.y +")" ) ;
+        $("bookface").textContent= "鼠标按下，坐标："+"("+mouse.x+","+mouse.y+")";
+    });
+    $("bookface").addEventListener("mouseup",function(ev){
+        mouse.isDown=false;
+
+        $("bookface").textContent= "";
+        if(Math.abs(mouse.deltaX) > 100){
+            $("bookface").textContent += ""  ;
+        }else{
+            $("bookface").textContent += ""  ;
+            $("bookface").style.left = '7%' ;
+        }
+
+    });
+    $("bookface").addEventListener("mouseout",function(ev){
+        ev.preventDefault();
+        mouse.isDown=false;
+
+        $("bookface").textContent= "";
+        if(Math.abs(mouse.deltaX) > 100){
+            $("bookface").textContent += " "  ;
+        }else{
+            $("bookface").textContent += " "  ;
+            $("bookface").style.left = '7%' ;
+        }
+
+    });
+    $("bookface").addEventListener("mousemove",function(ev){
+        ev.preventDefault();
+        if (mouse.isDown){
+            console.log("mouse isDown and moving");
+            mouse.deltaX = parseInt( ev.pageX - mouse.x );
+            // $("bookface").textContent= "" + mouse.deltaX +"";
+            $('bookface').style.left = mouse.deltaX + 'px' ;
+        }
+
+    });
+
+
+    function $(ele){
+        if (typeof ele !== 'string'){
+            throw("自定义的$函数参数的数据类型错误，实参必须是字符串！");
+            return
+        }
+        let dom = document.getElementById(ele) ;
+        if(dom){
+            return dom ;
+        }else{
+            dom = document.querySelector(ele) ;
+            if (dom) {
+                return dom ;
+            }else{
+                throw("执行$函数未能在页面上获取任何元素，请自查问题！");
+                return ;
+            }
+        }
+    }
+
+</script>
+</body>
+</html>
